@@ -8,6 +8,20 @@ public class Paragraph {
     private String fullText;
     private List<CharacterChain> characterChains = new ArrayList<>();
 
+    private void setType() {
+        int count = 0;
+        for(int i=0; i<6; i++) {
+            if(fullText.charAt(i) == '#') count++;
+            else break;
+        }
+
+        if(count > 0) {
+            type = "h" + count;
+        } else {
+            this.type = "p";
+        }
+    }
+
     public String getOutputHTML() {
         return "";
     }
