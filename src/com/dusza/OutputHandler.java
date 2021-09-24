@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,13 +29,28 @@ public class OutputHandler {
         }
     }
 
-    public List<String> readMarkdown() {
-        List<String> result = new ArrayList<>();
+    public List<Paragraph> readMarkdown() {
+        List<Paragraph> result = new ArrayList<>();
 
         try(Scanner input = new Scanner(Files.newBufferedReader(inputPath))) {
+            List<String> inputLines = new ArrayList<>();;
+            String line;
             while(input.hasNextLine()) {
-                result.add(input.nextLine().trim());
+                line = input.nextLine();
+                if(line.trim().equals("")) {
+                    Paragraph paragraph = new Paragraph();
+                    paragraph.setFullText(String.join("\n", inputLines));
+                    inputLines = new ArrayList<>();
+                    result.add(paragraph);
+                } else {
+                    inputLines.add(line);
+                }
             }
+
+            Paragraph paragraph = new Paragraph();
+            paragraph.setFullText(String.join("\n", inputLines));
+            result.add(paragraph);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

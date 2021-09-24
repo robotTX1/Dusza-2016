@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Paragraph {
     private String type;
+    private String fullText;
     private List<CharacterChain> characterChains = new ArrayList<>();
 
     public String getOutputHTML() {
@@ -17,5 +18,13 @@ public class Paragraph {
 
     public void setCharacterChainList(List<CharacterChain> newList) {
         this.characterChains = newList;
+    }
+
+    public void setFullText(String fullText) {
+        this.fullText = fullText;
+    }
+
+    public String getFullText() {
+        return fullText;
     }
 }
