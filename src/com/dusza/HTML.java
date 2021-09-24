@@ -1,3 +1,5 @@
+package com.dusza;
+
 import com.dusza.Paragraph;
 
 import java.util.*;
@@ -30,7 +32,15 @@ public class HTML {
             int i = 0;
             while (i < s.length)
             {
-                if(s[i].substring(0,2) == "**" && !bold) {
+                if(s[i].substring(0,2).equals("**") && !bold) {
+                    bold = true;
+
+                } else if (s[i].charAt(0) == '*' && !italic) {
+                    italic = true;
+                } else if (s[i].charAt(0) == '[' && !link)
+                    link = true;
+
+                if(s[i].substring(s[i].length()-2, s[i].length()).equals("**") && !bold) {
                     bold = true;
 
                 } else if (s[i].charAt(0) == '*' && !italic) {
