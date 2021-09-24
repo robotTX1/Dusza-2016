@@ -19,7 +19,7 @@ public class Main {
 //            System.out.println(p.getFullText());
         }
 
-        System.out.println(CharacterChain.getCharacters("\\*Hello\\*"));
+        //System.out.println(CharacterChain.getCharacters("\\*Hello\\*\\(Hello There\\)\\[Sumszung\\]\\\\/<Szuper sumszung>"));
 
     }
 }

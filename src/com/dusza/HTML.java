@@ -14,6 +14,7 @@ public class HTML {
         paragraphs = new ArrayList<>();
 
         for (Paragraph p: input) {
+            boolean saveChange = false;
             boolean bold = false;
             boolean italic = false;
             boolean link = false;
