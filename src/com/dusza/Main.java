@@ -16,7 +16,17 @@ public class Main {
         HTML html = new HTML(paragraphList);
 
         for(Paragraph p : paragraphList) {
-//            System.out.println(p.getFullText());
+            System.out.println(p.getFullText());
+        }
+
+        html.ProcessdMD();
+
+        System.out.println("**\n");
+        for(Paragraph p : html.getParagraphs()) {
+            for (CharacterChain cc : p.getCharacterChains())
+            {
+                System.out.println("||| " + cc.getTheListOfCharacters() + " |||");
+            }
         }
 
         System.out.println(CharacterChain.getCharacters("\\*Hello\\*"));

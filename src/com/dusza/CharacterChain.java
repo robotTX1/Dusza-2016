@@ -20,10 +20,16 @@ public class CharacterChain {
     private boolean italic;
     private boolean bold;
     private boolean link;
+
+    public String getTheListOfCharacters() {
+        return characters;
+    }
+
     private String characters;
     private String url;
 
     public CharacterChain(String characters, boolean italic, boolean bold, boolean link, String url) {
+        this.characters = characters;
         this.italic=italic;
         this.bold=bold;
         this.link=link;

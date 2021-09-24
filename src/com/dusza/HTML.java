@@ -10,25 +10,26 @@ public class HTML {
         this.paragraphs = paragraphs;
     }
 
-    public void ProcessdMD(List<Paragraph> input) {
-        paragraphs = new ArrayList<>();
+    public void ProcessdMD() {
 
-        for (Paragraph p: input) {
+        for (int paragIndex = 0; paragIndex < paragraphs.size(); paragIndex++) {
+            Paragraph p = paragraphs.get(paragIndex);
+            boolean saveChange = false;
             boolean bold = false;
             boolean italic = false;
             boolean link = false;
             boolean paragraph = false;
-            StringBuilder url = new StringBuilder();
+            String url = "";
             String[] s = p.getFullText().split(" ");
 
+
             StringBuilder charChainFragment = new StringBuilder();
-            System.out.println(s);
 
             int i = 0;
             while (i < s.length)
             {
-                charChainFragment.append(s[i]);
-                if(s[i].substring(0,2).equals("**") && !bold) {
+                charChainFragment.append(" ").append(s[i]);
+                if(s[i].startsWith("**") && !bold) {
                     bold = true;
                     saveChange = true;
 
@@ -40,34 +41,37 @@ public class HTML {
                     saveChange = true;
                 }
 
-                if(s[i].substring(s[i].length()-3, s[i].length()-1).equals("**") && bold) {
+                if((s[i].length()>2 && s[i].substring(s[i].length()-3, s[i].length()-1).equals("**")) || (s[i+1].length()>2 && s[i+1].substring(s[i+1].length()-3, s[i+1].length()-1).equals("**")) && bold) {
                     bold = false;
                     saveChange = true;
 
-                } else if (s[i].charAt(s[i].length()-1) == '*' && italic) {
+                } else if ((s[i].charAt(s[i].length()-1) == '*') || (s[i+1].charAt(s[i+1].length()-1) == '*') && italic) {
                     italic = false;
                     saveChange = true;
-                } else if (s[i].charAt(s[i].length()-1) == ']' && link) {
+                } else if ((s[i].charAt(s[i].length()-1) == ']') || (s[i+1].charAt(s[i+1].length()-1) == ']') && link) {
                     link = false;
                     saveChange = true;
-                    int index = i;
-                    while (s[index].charAt(s[index].length() - 1) != ')') {
-                        url.append(s[index]);
-                        index++;
-                    }
-                    i+= i-index-1;
+
+
+                    int index = s[i].indexOf("]");
+                    url = url.replaceAll("\"", "%22");
                 }
 
                 if (saveChange) {
-                    p.addNewChainPiece(new CharacterChain(
-                            charChainFragment.toString(),italic, bold, link, url.toString()
+                    paragraphs.get(paragIndex).addNewChainPiece(new CharacterChain(
+                            charChainFragment.toString(),italic, bold, link, url
                             ));
                     charChainFragment = new StringBuilder();
                     saveChange = false;
                 }
                 i++;
             }
+
+            paragraphs.get(paragIndex).addNewChainPiece(new CharacterChain(
+                    charChainFragment.toString(),italic, bold, link, url
+            ));
         }
+
 
     }
 

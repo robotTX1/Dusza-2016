@@ -6,6 +6,11 @@ import java.util.List;
 public class Paragraph {
     private String type;
     private String fullText;
+
+    public List<CharacterChain> getCharacterChains() {
+        return characterChains;
+    }
+
     private List<CharacterChain> characterChains = new ArrayList<>();
 
     private void setType() {
