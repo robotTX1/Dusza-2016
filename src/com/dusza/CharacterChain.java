@@ -1,6 +1,22 @@
 package com.dusza;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CharacterChain {
+    private static final Map<String, String> specialCharacters = new HashMap<>();
+
+    static {
+        specialCharacters.put("\\*", "*");
+        specialCharacters.put("\\(", "(");
+        specialCharacters.put("\\)", ")");
+        specialCharacters.put("\\[", "[");
+        specialCharacters.put("\\]", "]");
+        specialCharacters.put("\\\\", "\\");
+        specialCharacters.put("<", "&lt;");
+        specialCharacters.put(">", "&gt;");
+    }
+
     private boolean italic;
     private boolean bold;
     private boolean link;
@@ -38,8 +54,19 @@ public class CharacterChain {
         this.link = link;
     }
 
-    public String getCharacters() {
-        return characters;
+    public static String getCharacters(String characters) {
+        String tempString = characters;
+        tempString = tempString.length() % 2 == 0 ? tempString : tempString+" ";
+        String key;
+        for(int i=0; i<tempString.length(); i++) {
+             key = tempString.substring(i, i+2);
+            if(specialCharacters.containsKey(key)) {
+                System.out.println(tempString.substring(i+2));
+                tempString = specialCharacters.get(key) + tempString.substring(i+2);
+            }
+        }
+
+        return tempString;
     }
 
     public void setCharacters(String characters) {

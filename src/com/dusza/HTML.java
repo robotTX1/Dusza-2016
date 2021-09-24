@@ -1,26 +1,19 @@
 package com.dusza;
 
-import com.dusza.Paragraph;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HTML {
-
-
     private List<Paragraph> paragraphs;
-
 
     public HTML(List<Paragraph> paragraphs) {
         this.paragraphs = paragraphs;
     }
 
-
     public void ProcessdMD(List<Paragraph> input) {
         paragraphs = new ArrayList<>();
 
-
         for (Paragraph p: input) {
-            boolean saveChange = false;
             boolean bold = false;
             boolean italic = false;
             boolean link = false;
@@ -30,8 +23,6 @@ public class HTML {
 
             StringBuilder charChainFragment = new StringBuilder();
             System.out.println(s);
-
-
 
             int i = 0;
             while (i < s.length)
@@ -74,7 +65,6 @@ public class HTML {
                     charChainFragment = new StringBuilder();
                     saveChange = false;
                 }
-
                 i++;
             }
         }
