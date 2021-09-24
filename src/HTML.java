@@ -15,39 +15,32 @@ public class HTML {
 
     public void ProcessdMD(List<Paragraph> input) {
         paragraphs = new ArrayList<>();
-        boolean bold = false;
-        boolean italic = false;
-        boolean link = false;
-        boolean paragraph = false;
-        String url = "";
+
 
         for (Paragraph p: input) {
+            boolean bold = false;
+            boolean italic = false;
+            boolean link = false;
+            boolean paragraph = false;
+            String url = "";
+            String[] s = p.getFullText().split(" ");
 
-        }
-        int i = 0;
-        while (i < input.size())
-        {
-            String s = input.get(i);
+            System.out.println(s);
 
-            if (s.substring(0,1).equals("#"))
+            int i = 0;
+            while (i < s.length)
             {
-                long headerCount = s.chars().count();
+                if(s[i].substring(0,2) == "**" && !bold) {
+                    bold = true;
 
-            } else if(s.equals("*")) {
-
-            }
-
-            i++;
-        }
-        for (String s: input) {
-
-            switch (s)
-            {
-                case "#":
-                    break;
-
+                } else if (s[i].charAt(0) == '*' && !italic) {
+                    italic = true;
+                } else if (s[i].charAt(0) == '[' && !link)
+                    link = true;
+                i++;
             }
         }
+
     }
 
     public List<Paragraph> getParagraphs() {
