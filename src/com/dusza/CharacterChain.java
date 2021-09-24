@@ -1,7 +1,6 @@
 package com.dusza;
 
 public class CharacterChain {
-
     private boolean italic;
     private boolean bold;
     private boolean link;
@@ -54,5 +53,4 @@ public class CharacterChain {
     public void setUrl(String url) {
         this.url = url;
     }
-
 }
