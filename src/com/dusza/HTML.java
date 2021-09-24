@@ -1,21 +1,17 @@
-import com.dusza.Paragraph;
+package com.dusza;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HTML {
-
-
     private List<Paragraph> paragraphs;
-
 
     public HTML(List<Paragraph> paragraphs) {
         this.paragraphs = paragraphs;
     }
 
-
     public void ProcessdMD(List<Paragraph> input) {
         paragraphs = new ArrayList<>();
-
 
         for (Paragraph p: input) {
             boolean bold = false;
