@@ -2,12 +2,9 @@ package com.dusza;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    private static List<String> tags = new ArrayList<String>();
-
 
     public static void main(String[] args) {
         Path inputPath = FileSystems.getDefault().getPath("input.txt");

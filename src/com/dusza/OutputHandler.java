@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,7 +32,7 @@ public class OutputHandler {
         List<Paragraph> result = new ArrayList<>();
 
         try(Scanner input = new Scanner(Files.newBufferedReader(inputPath))) {
-            List<String> inputLines = new ArrayList<>();;
+            List<String> inputLines = new ArrayList<>();
             String line;
             while(input.hasNextLine()) {
                 line = input.nextLine();
