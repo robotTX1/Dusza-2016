@@ -54,19 +54,34 @@ public class CharacterChain {
         this.link = link;
     }
 
-    public static String getCharacters(String characters) {
-        String tempString = characters;
-        tempString = tempString.length() % 2 == 0 ? tempString : tempString+" ";
-        String key;
-        for(int i=0; i<tempString.length(); i++) {
-             key = tempString.substring(i, i+2);
+    public String getCharacters() {
+        StringBuilder builder = new StringBuilder();
+        if(characters.length() % 2 != 0) characters = characters+" ";
+
+        String key = null;
+        String key2;
+
+        for(int i=0; i<characters.length(); i++) {
+            if(i + 2 <= characters.length()) key = characters.substring(i, i+2);
+            else key = "";
+            key2 = characters.substring(i,i+1);
             if(specialCharacters.containsKey(key)) {
-                System.out.println(tempString.substring(i+2));
-                tempString = specialCharacters.get(key) + tempString.substring(i+2);
+                builder.append(specialCharacters.get(key));
+                i++;
+            } else if(specialCharacters.containsKey(key2)) {
+                builder.append(specialCharacters.get(key2));
+            } else {
+                builder.append(characters.charAt(i));
             }
         }
 
-        return tempString;
+        return builder.toString();
+
+//        for(Map.Entry<String, String> entry : specialCharacters.entrySet()) {
+//            characters = characters.replaceAll(entry.getKey(), entry.getValue());
+//        }
+//
+//        return characters;
     }
 
     public void setCharacters(String characters) {
