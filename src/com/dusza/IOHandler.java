@@ -8,15 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class OutputHandler {
+public class IOHandler {
     private final Path inputPath;
     private final Path outputPath;
 
-    public OutputHandler(Path inputPath, Path outputPath) {
+    public IOHandler(Path inputPath, Path outputPath) {
         this.inputPath = inputPath;
         this.outputPath = outputPath;
     }
 
+    // Kiírja a Paragraph objektumok segítségével a HTML fájlt
     public void writeHTML(List<Paragraph> paragraphList) {
         try(BufferedWriter writer = Files.newBufferedWriter(outputPath)) {
             writer.write("<html>\r\n");
@@ -32,6 +33,7 @@ public class OutputHandler {
         }
     }
 
+    // Beolvassa az input.md fájlt és Paragraph osztályú objektummá alakítja és egy listában vissza adja az elemeket.
     public List<Paragraph> readMarkdown() {
         List<Paragraph> result = new ArrayList<>();
 

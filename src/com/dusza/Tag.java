@@ -18,6 +18,7 @@ public class Tag {
         return index;
     }
 
+    // Visszaadja a megfelelő nyitó/záró taget
     public String getType() {
         if(end) return type.getTag().charAt(0) + "/" + type.getTag().substring(1);
         if(type == Highlights.LINK) return "<a href=\"" + url + "\">";
