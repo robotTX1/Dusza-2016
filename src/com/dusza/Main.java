@@ -13,13 +13,9 @@ public class Main {
         OutputHandler outputHandler = new OutputHandler(inputPath, outputPath);
         List<Paragraph> paragraphList = outputHandler.readMarkdown();
 
-        HTML html = new HTML(paragraphList);
-
-        for(Paragraph p : paragraphList) {
-//            System.out.println(p.getFullText());
-        }
-
-        //System.out.println(CharacterChain.getCharacters("\\*Hello\\*\\(Hello There\\)\\[Sumszung\\]\\\\/<Szuper sumszung>"));
-
+        outputHandler.writeHTML(paragraphList);
+//        for(Paragraph p : paragraphList) {
+//            System.out.println(p.getHTML() + "\n");
+//        }
     }
 }
