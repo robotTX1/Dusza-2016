@@ -52,10 +52,11 @@ public class IOHandler {
                 }
             }
 
-            Paragraph paragraph = new Paragraph();
-            paragraph.setFullText(String.join("\n", inputLines));
-            result.add(paragraph);
-
+            if(!inputLines.isEmpty()) {
+                Paragraph paragraph = new Paragraph();
+                paragraph.setFullText(String.join("\n", inputLines));
+                result.add(paragraph);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
