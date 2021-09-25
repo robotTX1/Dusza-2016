@@ -14,8 +14,5 @@ public class Main {
         List<Paragraph> paragraphList = outputHandler.readMarkdown();
 
         outputHandler.writeHTML(paragraphList);
-//        for(Paragraph p : paragraphList) {
-//            System.out.println(p.getHTML() + "\n");
-//        }
     }
 }

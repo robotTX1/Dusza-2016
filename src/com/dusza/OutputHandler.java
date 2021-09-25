@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class OutputHandler {
-    private Path inputPath;
-    private Path outputPath;
+    private final Path inputPath;
+    private final Path outputPath;
 
     public OutputHandler(Path inputPath, Path outputPath) {
         this.inputPath = inputPath;

@@ -25,7 +25,7 @@ public class Paragraph {
     private String type;
     private String fullText;
     private String finishedText;
-    private List<Tag> tagList = new ArrayList<>();
+    private final List<Tag> tagList = new ArrayList<>();
 
     public void determineType() {
         int count = 0;

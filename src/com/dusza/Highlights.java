@@ -5,7 +5,7 @@ public enum Highlights {
     BOLD("<strong>"),
     LINK("<a>");
 
-    private String tag;
+    private final String tag;
 
     public String getTag() {
         return tag;
