@@ -19,10 +19,14 @@ public class OutputHandler {
 
     public void writeHTML(List<Paragraph> paragraphList) {
         try(BufferedWriter writer = Files.newBufferedWriter(outputPath)) {
+            writer.write("<html>\r\n");
+            writer.write("\t<body>\r\n");
             for(Paragraph p : paragraphList) {
-                String outputString = p.getOutputHTML();
-                writer.write(outputString + "\r\n");
+                String outputString = p.getHTML();
+                writer.write("\t\t" + outputString + "\r\n");
             }
+            writer.write("\t</body>\r\n");
+            writer.write("</html>");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,7 +42,7 @@ public class OutputHandler {
                 line = input.nextLine();
                 if(line.trim().equals("")) {
                     Paragraph paragraph = new Paragraph();
-                    paragraph.setFullText(String.join("\n", inputLines));
+                    paragraph.setFullText(String.join(" ", inputLines));
                     inputLines = new ArrayList<>();
                     result.add(paragraph);
                 } else {
