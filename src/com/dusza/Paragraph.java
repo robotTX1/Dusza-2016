@@ -25,8 +25,9 @@ public class Paragraph {
     private String type;
     private String fullText;
     private String finishedText;
-    private List<Tag> tagList = new ArrayList<>();
+    private final List<Tag> tagList = new ArrayList<>();
 
+    // Ez a függvény eldönti a bekezdésről, hogy milyen típusú (p vagy hx)
     public void determineType() {
         int count = 0;
         for(int i=0; i<6; i++) {
@@ -43,6 +44,8 @@ public class Paragraph {
         }
     }
 
+    // Ez a függvény feldolgozza a HTML jelöléseket úgy, hogy ne vegye figyelembe a speciális karaktereket.
+    // Jelölések amiket feldolgoz: döntött szöveg (italic), félköver szöveg (bold), hivatkozás
     private void processText() {
         StringBuilder builder = new StringBuilder();
 
@@ -130,6 +133,9 @@ public class Paragraph {
         finishedText = builder.toString();
     }
 
+
+    // A függvény feladata az, hogy minden speciális karaktert átalakítson HTML kompatibilis karakterreké úgy,
+    // hogy a HTML kóddá alakításhoz szükséges jelöléseket ne írja felül.
     private String fixMarkdownSpecialCharacters() {
         StringBuilder builder = new StringBuilder();
         if(fullText.length() % 2 != 0) fullText = fullText +" ";
@@ -154,6 +160,7 @@ public class Paragraph {
         return builder.toString();
     }
 
+    // Ez a függvény vissza adja a bekezdés HTML kódját.
     public String getHTML() {
         determineType();
         processText();

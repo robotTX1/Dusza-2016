@@ -10,12 +10,9 @@ public class Main {
         Path inputPath = FileSystems.getDefault().getPath("input.md");
         Path outputPath = FileSystems.getDefault().getPath("output.html");
 
-        OutputHandler outputHandler = new OutputHandler(inputPath, outputPath);
-        List<Paragraph> paragraphList = outputHandler.readMarkdown();
+        IOHandler IOHandler = new IOHandler(inputPath, outputPath);
+        List<Paragraph> paragraphList = IOHandler.readMarkdown();
 
-        outputHandler.writeHTML(paragraphList);
-//        for(Paragraph p : paragraphList) {
-//            System.out.println(p.getHTML() + "\n");
-//        }
+        IOHandler.writeHTML(paragraphList);
     }
 }
