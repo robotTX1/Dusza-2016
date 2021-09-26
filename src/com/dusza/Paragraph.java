@@ -59,21 +59,16 @@ public class Paragraph {
                 while(count < fullText.length() && fullText.charAt(count) != ']') {
                     count++;
                 }
+
                 if(fullText.charAt(count+1) == '(') {
                     int count2 = count;
                     while(count2 < fullText.length() && fullText.charAt(count2) != ')') {
                         count2++;
                     }
-                    String url = fullText.substring(count+2, count2);
-                    StringBuilder urlBuilder = new StringBuilder();
-
-                    for(int j=0; j<url.length(); j++) {
-                        if(url.charAt(j) == '"') urlBuilder.append("%22");
-                        else urlBuilder.append(url.charAt(j));
-                    }
+                    String url = fullText.substring(count+2, count2).replaceAll("\"", "%22");
 
                     Tag tag = new Tag(i, 1, Highlights.LINK, false);
-                    tag.setUrl(urlBuilder.toString());
+                    tag.setUrl(url);
                     Tag tag2 = new Tag(count, count2-count+1, Highlights.LINK, true);
                     tagList.add(tag);
                     tagList.add(tag2);
@@ -81,26 +76,14 @@ public class Paragraph {
             }
             if(fullText.charAt(i) == HiGHLIGHT && fullText.charAt(Math.max(0, i-1)) != '\\') {
                 if(i+1 < fullText.length() && fullText.charAt(i+1) == HiGHLIGHT) {
-                    if(bold) {
-                        Tag tag = new Tag(i, 2, Highlights.BOLD, true);
-                        tagList.add(tag);
-                        bold = false;
-                    } else {
-                        Tag tag = new Tag(i, 2, Highlights.BOLD, false);
-                        tagList.add(tag);
-                        bold = true;
-                    }
+                    Tag tag = new Tag(i, 2, Highlights.BOLD, bold);
+                    tagList.add(tag);
+                    bold = !bold;
                     i++;
                 } else {
-                    if(italic) {
-                        Tag tag = new Tag(i, 1, Highlights.ITALIC, true);
-                        tagList.add(tag);
-                        italic = false;
-                    } else {
-                        Tag tag = new Tag(i, 1, Highlights.ITALIC, false);
-                        tagList.add(tag);
-                        italic = true;
-                    }
+                    Tag tag = new Tag(i, 1, Highlights.ITALIC, italic);
+                    tagList.add(tag);
+                    italic = !italic;
                 }
             }
         }
